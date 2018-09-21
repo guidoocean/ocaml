@@ -78,4 +78,32 @@ type 'a rle =
   | Many of int * 'a;;
 
 let encode_v2 lst = 
-  let enc counter l t = function
+  let enc_tuple counter element =
+    if counter = 1 then One element else Many (counter, element) in
+  let rec enc_logic counter tup lstt =
+    match lstt with
+    | [] -> []
+    | [item] -> tup@[(enc_tuple (counter+1) item)]
+    | hd :: (prev :: _ as tl) -> if hd = prev then enc_logic (counter + 1) tup tl
+                                 else enc_logic 0 ( tup@[(enc_tuple (counter + 1) hd)] ) tl in enc_logic 0 [] lst;;
+
+(* 12. Decode a run-length encoded list. (medium) *)
+let decode lst = ;; (* In Progress *)
+
+(* 13. Run-length encoding of a list (direct solution). (medium) *)
+
+(* 14. Duplicate the elements of a list. (easy) *)
+let rec duplicate lst = 
+  match lst with
+  | [] -> []
+  | hd :: tl -> hd :: hd :: duplicate tl;;
+
+(* 15. Replicate the elements of a list a given number of times. (medium) *)
+let replicate lst count =
+  match lst with
+  | [] -> []
+  | 
+
+(* 33. Determine whether two positive integer numbers are coprime. (easy) *)
+let is_prime n = 
+  if n / 2 = ??? then true else false;; (* Think how detect is result is float *)
